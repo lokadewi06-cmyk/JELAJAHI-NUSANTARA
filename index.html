@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajahi Nusantara: Keberagaman Suku dan Adat di Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2C3E50;
+            --light: #F7F9FA;
+            --card-bg: #FFFFFF;
+            --green: #2ecc71;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-family: 'Fredoka', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav button {
+            background-color: var(--light);
+            border: 2px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        nav button:hover, nav button.active {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1000px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .item-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border-top: 5px solid var(--primary);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header-banner {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, #ff9f43, #ee5253);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Fredoka', cursive;
+            font-size: 1.3rem;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .item-card h3 {
+            font-family: 'Fredoka', cursive;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .item-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        .yt-btn {
+            display: inline-block;
+            background-color: #FF0000;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+
+        .yt-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* Kotak Umum & Form */
+        .box-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            line-height: 1.6;
+        }
+
+        .box-container h2 {
+            font-family: 'Fredoka', cursive;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #CBD5E1;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin: 10px 0 20px 0;
+        }
+
+        .main-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .main-btn:hover {
+            background-color: #ff5252;
+        }
+
+        /* Kuis & Game */
+        .quiz-container, .game-container {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .question-box {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .option-btn {
+            background-color: var(--light);
+            border: 2px solid #CBD5E1;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            color: #718096;
+            font-size: 0.9rem;
+            border-top: 1px solid #E2E8F0;
+            margin-top: auto;
+        }
+
+        @media(max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Jelajahi Nusantara</h1>
+        <p>Keberagaman Suku dan Adat di Indonesia (Pendidikan Pancasila Kelas 3 SD)</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="switchTab('beranda')">🏠 Beranda</button>
+        <button class="nav-btn" onclick="switchTab('dashboard')">🗺️ Dashboard</button>
+        <button class="nav-btn" onclick="switchTab('suku')">👥 Suku</button>
+        <button class="nav-btn" onclick="switchTab('rumah')">🏡 Rumah</button>
+        <button class="nav-btn" onclick="switchTab('baju')">👘 Pakaian</button>
+        <button class="nav-btn" onclick="switchTab('tarian')">💃 Tarian</button>
+        <button class="nav-btn" onclick="switchTab('bahasalagu')">🎵 Bahasa & Lagu</button>
+        <button class="nav-btn" onclick="switchTab('permainan')">🪀 Permainan</button>
+        <button class="nav-btn" onclick="switchTab('bhineka')">🤝 Bhinneka</button>
+        <button class="nav-btn" onclick="switchTab('kuis')">🏆 Kuis (10 Soal)</button>
+        <button class="nav-btn" onclick="switchTab('hasil')">📊 Hasil</button>
+        <button class="nav-btn" onclick="switchTab('tentang')">ℹ️ Tentang</button>
+    </nav>
+
+    <main>
+        <!-- 1. BERANDA -->
+        <section id="beranda" class="section active">
+            <div class="box-container" style="text-align: center;">
+                <h2>Selamat Datang di Petualangan Budaya Indonesia! 🇮🇩</h2>
+                <p>Halo Adik-adik hebat kelas 3! Mari kita jelajahi keindahan budaya, suku bangsa, pakaian, rumah adat, hingga permainan tradisional dari Sabang sampai Merauke.</p>
+                <br>
+                <div style="max-width: 400px; margin: 0 auto; text-align: left;">
+                    <label style="font-weight: 700;">Masukkan Nama Lengkapmu:</label>
+                    <input type="text" id="student-name" class="form-input" placeholder="Contoh: Budi Santoso">
+                    <button class="main-btn" style="width: 100%;" onclick="startAdventure()">Mulai Petualangan 🚀</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. DASHBOARD -->
+        <section id="dashboard" class="section">
+            <div class="box-container">
+                <h2>Dashboard Petualangan Nusantara</h2>
+                <p id="welcome-user" style="font-weight: 700; color: var(--primary); margin-bottom: 15px;"></p>
+                <p>Pilih menu di atas atau tombol navigasi cepat di bawah untuk mulai mempelajari materi kekayaan budaya Indonesia:</p>
+                <div class="card-grid" style="margin-top: 20px;">
+                    <div class="item-card" style="border-top-color: #00b894; cursor:pointer;" onclick="switchTab('suku')">
+                        <div class="card-header-banner" style="background: #00b894;">👥 Suku Bangsa</div>
+                        <div class="card-content"><p>Kenali 10 contoh suku bangsa utama di berbagai wilayah Indonesia.</p></div>
+                    </div>
+                    <div class="item-card" style="border-top-color: #e17055; cursor:pointer;" onclick="switchTab('rumah')">
+                        <div class="card-header-banner" style="background: #e17055;">🏡 Rumah Adat</div>
+                        <div class="card-content"><p>Jelajahi 10 rumah adat unik dari Aceh hingga Papua.</p></div>
+                    </div>
+                    <div class="item-card" style="border-top-color: #6c5ce7; cursor:pointer;" onclick="switchTab('baju')">
+                        <div class="card-header-banner" style="background: #6c5ce7;">👘 Pakaian Adat</div>
+                        <div class="card-content"><p>Lihat 10 busana tradisional penuh warna dan ciri khasnya.</p></div>
+                    </div>
+                    <div class="item-card" style="border-top-color: #fdcb6e; cursor:pointer;" onclick="switchTab('kuis')">
+                        <div class="card-header-banner" style="background: #fdcb6e; color: #2d3436;">🏆 Kuis Interaktif</div>
+                        <div class="card-content"><p>Uji pemahamanmu dengan 10 soal pilihan ganda berhadiah skor otomatis!</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SUKU BANGSA -->
+        <section id="suku" class="section">
+            <h2 style="font-family:'Fredoka'; color:var(--primary);">Mengenal Suku Bangsa di Indonesia</h2>
+            <p style="margin-bottom: 15px;">Setiap suku bangsa memiliki keunikan dan kedudukan yang setara dalam bingkai persatuan.</p>
+            <div class="card-grid">
+                <div class="item-card"><div class="card-header-banner" style="background:#00b894;">Suku Jawa</div><div class="card-content"><h3>Suku Jawa</h3><p>Wilayah: Jawa Tengah, Yogyakarta, Jawa Timur. Populasi terbesar di Indonesia.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#0984e3;">Suku Sunda</div><div class="card-content"><h3>Suku Sunda</h3><p>Wilayah: Jawa Barat. Terkenal ramah dan memiliki kesenian angklung.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e17055;">Suku Batak</div><div class="card-content"><h3>Suku Batak</h3><p>Wilayah: Sumatra Utara. Terdiri dari sub-suku seperti Toba, Karo, Mandailing.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#6c5ce7;">Suku Minang</div><div class="card-content"><h3>Suku Minangkabau</h3><p>Wilayah: Sumatra Barat. Terkenal dengan sistem kekerabatan matrilineal.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#d63031;">Suku Dayak</div><div class="card-content"><h3>Suku Dayak</h3><p>Wilayah: Kalimantan. Menghuni pedalaman dengan tradisi rumah panjang/betang.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#fdcb6e; color:#333;">Suku Betawi</div><div class="card-content"><h3>Suku Betawi</h3><p>Wilayah: DKI Jakarta. Perpaduan budaya lokal dan pendatang dengan ondel-ondel.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e84393;">Suku Bali</div><div class="card-content"><h3>Suku Bali</h3><p>Wilayah: Bali. Terkenal dengan tradisi seni, ukir, dan tarian sakralnya.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00cec9;">Suku Bugis</div><div class="card-content"><h3>Suku Bugis</h3><p>Wilayah: Sulawesi Selatan. Terkenal sebagai pelaut ulung pembuat kapal Phinisi.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#fab1a0; color:#333;">Suku Toraja</div><div class="card-content"><h3>Suku Toraja</h3><p>Wilayah: Sulawesi Selatan. Terkenal dengan arsitektur rumah Tongkonan.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#ff7675;">Suku Asmat</div><div class="card-content"><h3>Suku Asmat</h3><p>Wilayah: Papua. Terkenal dengan keahlian seni ukir kayu tradisional yang mendunia.</p></div></div>
+            </div>
+        </section>
+
+        <!-- 4. RUMAH ADAT -->
+        <section id="rumah" class="section">
+            <h2 style="font-family:'Fredoka'; color:var(--primary);">Galeri Rumah Adat (Maksimal 10)</h2>
+            <div class="card-grid">
+                <div class="item-card"><div class="card-header-banner">Rumoh Aceh</div><div class="card-content"><h3>1. Rumoh Aceh</h3><p>Asal: Aceh. Rumah panggung kayu berukir indah.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Bolon</div><div class="card-content"><h3>2. Rumah Bolon</h3><p>Asal: Sumatra Utara. Rumah adat tradisional masyarakat Batak.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Gadang</div><div class="card-content"><h3>3. Rumah Gadang</h3><p>Asal: Sumatra Barat. Atapnya berbentuk tanduk kerbau.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Limas</div><div class="card-content"><h3>4. Rumah Limas</h3><p>Asal: Sumatra Selatan. Atap bertingkat menyerupai limas.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Joglo</div><div class="card-content"><h3>5. Rumah Joglo</h3><p>Asal: Jawa Tengah. Memiliki tiang penyangga utama (saka guru).</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Betang</div><div class="card-content"><h3>6. Rumah Betang</h3><p>Asal: Kalimantan Tengah. Rumah panggung panjang untuk bersama.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Tongkonan</div><div class="card-content"><h3>7. Rumah Tongkonan</h3><p>Asal: Sulawesi Selatan. Rumah adat Toraja berukir geometris.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Baileo</div><div class="card-content"><h3>8. Rumah Baileo</h3><p>Asal: Maluku. Rumah panggung besar sebagai balai musyawarah.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Mbaru Niang</div><div class="card-content"><h3>9. Mbaru Niang</h3><p>Asal: Flores, NTT. Rumah kerucut unik di desa Wae Rebo.</p></div></div>
+                <div class="item-card"><div class="card-header-banner">Rumah Honai</div><div class="card-content"><h3>10. Rumah Honai</h3><p>Asal: Papua. Rumah bundar berdinding kayu beratap jerami kerucut.</p></div></div>
+            </div>
+        </section>
+
+        <!-- 5. PAKAIAN ADAT -->
+        <section id="baju" class="section">
+            <h2 style="font-family:'Fredoka'; color:var(--primary);">Galeri Pakaian Adat (Maksimal 10)</h2>
+            <div class="card-grid">
+                <div class="item-card"><div class="card-header-banner" style="background:#0984e3;">Ulee Balang</div><div class="card-content"><h3>1. Ulee Balang</h3><p>Asal: Aceh. Pakaian kebesaran bangsawan berlapis sulaman emas.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00b894;">Batak Toba</div><div class="card-content"><h3>2. Busana Batak Toba</h3><p>Asal: Sumatra Utara. Dililit dengan kain tenun ulos yang khas.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e17055;">Bundo Kanduang</div><div class="card-content"><h3>3. Bundo Kanduang</h3><p>Asal: Sumatra Barat. Busana wanita berpenutup kepala tanduk.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#6c5ce7;">Busana Melayu</div><div class="card-content"><h3>4. Busana Melayu</h3><p>Asal: Riau. Baju kurung serba sopan dan elegan.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#d63031;">Kebaya & Beskap</div><div class="card-content"><h3>5. Kebaya & Beskap</h3><p>Asal: Jawa. Busana tradisional anggun dipadu kain batik.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#fdcb6e; color:#333;">Busana Betawi</div><div class="card-content"><h3>6. Busana Betawi</h3><p>Asal: Jakarta. Ujung serong dan kerah beralas kain penutup kepala.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e84393;">Busana Bali</div><div class="card-content"><h3>7. Busana Bali</h3><p>Asal: Bali. Dilengkapi selendang ikat pinggang dan udeng.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00cec9;">Busana Sumba</div><div class="card-content"><h3>8. Busana Sumba</h3><p>Asal: NTT. Kain tenun ikat sarat motif dan penutup kepala gagah.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#2d3436;">King Baba</div><div class="card-content"><h3>9. King Baba & Bibinge</h3><p>Asal: Kalimantan Barat. Busana Dayak berhias bulu enggang.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#fab1a0; color:#333;">Baju Bodo</div><div class="card-content"><h3>10. Baju Bodo</h3><p>Asal: Sulawesi Selatan. Blus transparan longgar tradisional Bugis.</p></div></div>
+            </div>
+        </section>
+
+        <!-- 6. TARIAN TRADISIONAL -->
+        <section id="tarian" class="section">
+            <h2 style="font-family:'Fredoka'; color:var(--primary);">Galeri Tarian Tradisional (Maksimal 10)</h2>
+            <div class="card-grid">
+                <div class="item-card"><div class="card-header-banner" style="background:#d63031;">Tari Saman</div><div class="card-content"><h3>1. Tari Saman</h3><p>Asal: Aceh. Gerakan tepuk dada dan tangan kompak tanpa alat musik.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e17055;">Tari Tor-Tor</div><div class="card-content"><h3>2. Tari Tor-Tor</h3><p>Asal: Sumatra Utara. Diiringi musik gondang dan manortor.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#fdcb6e; color:#333;">Tari Piring</div><div class="card-content"><h3>3. Tari Piring</h3><p>Asal: Sumatra Barat. Penari membawa piring di kedua telapak tangan.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00b894;">Tari Jaipong</div><div class="card-content"><h3>4. Tari Jaipong</h3><p>Asal: Jawa Barat. Tarian pergaulan energik berirama kendang.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#0984e3;">Tari Gambyong</div><div class="card-content"><h3>5. Tari Gambyong</h3><p>Asal: Jawa Tengah. Tarian penyambutan tamu yang gemulai.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#6c5ce7;">Tari Remo</div><div class="card-content"><h3>6. Tari Remo</h3><p>Asal: Jawa Timur. Tarian penyambutan pahlawan yang gagah berani.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e84393;">Tari Kecak</div><div class="card-content"><h3>7. Tari Kecak</h3><p>Asal: Bali. Paduan suara penari laki-laki meneriakkan "cak cak".</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00cec9;">Tari Pendet</div><div class="card-content"><h3>8. Tari Pendet</h3><p>Asal: Bali. Tarian pemujaan menyambut turunnya dewata.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#fab1a0; color:#333;">Tari Pakarena</div><div class="card-content"><h3>9. Tari Pakarena</h3><p>Asal: Sulawesi Selatan. Tarian lembut menggunakan kipas.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#ff7675;">Tari Yospan</div><div class="card-content"><h3>10. Tari Yospan</h3><p>Asal: Papua. Tarian persahabatan pemuda-pemudi yang gembira.</p></div></div>
+            </div>
+        </section>
+
+        <!-- 7. BAHASA & LAGU DAERAH -->
+        <section id="bahasalagu" class="section">
+            <h2 style="font-family:'Fredoka'; color:var(--primary);">Bahasa dan Lagu Daerah</h2>
+            <div class="box-container" style="margin-bottom: 20px;">
+                <h3 style="color:var(--primary); margin-bottom:10px;">💬 Contoh Bahasa Daerah</h3>
+                <p>• <strong>Bahasa Jawa:</strong> "Sugeng enjing" (Selamat pagi)</p>
+                <p>• <strong>Bahasa Sunda:</strong> "Wilujeng enjing" (Selamat pagi)</p>
+                <p>• <strong>Bahasa Batak Toba:</strong> "Horas" (Salam / Selamat)</p>
+                <p>• <strong>Bahasa Minangkabau:</strong> "Alo" / "Apa kaba" (Apa kabar)</p>
+                <p>• <strong>Bahasa Bali:</strong> "Om Swastiastu" (Salam sejahtera)</p>
+                <p>• <strong>Bahasa Bugis:</strong> "Tabe'" (Permisi)</p>
+                <p style="margin-top: 10px; font-style: italic;">Catatan: Bahasa Indonesia berperan sebagai bahasa persatuan untuk alat komunikasi antarsuku di seluruh nusantara.</p>
+            </div>
+
+            <h3 style="font-family:'Fredoka'; color:var(--primary); margin-bottom:15px;">🎵 Galeri Lagu Daerah (Minimal 4)</h3>
+            <div class="card-grid">
+                <div class="item-card"><div class="card-header-banner" style="background:#0984e3;">Ampar-Ampar Pisang</div><div class="card-content"><h3>Ampar-Ampar Pisang</h3><p>Asal: Kalimantan Selatan.</p><a href="https://www.youtube.com/results?search_query=lagu+ampar+ampar+pisang" target="_blank" class="yt-btn">▶ Ayo Bernyanyi Bersama</a></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e17055;">Gundul-Gundul Pacul</div><div class="card-content"><h3>Gundul-Gundul Pacul</h3><p>Asal: Jawa Tengah.</p><a href="https://www.youtube.com/results?search_query=lagu+gundul+gundul+pacul" target="_blank" class="yt-btn">▶ Ayo Bernyanyi Bersama</a></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00b894;">Cublak-Cublak Suweng</div><div class="card-content"><h3>Cublak-Cublak Suweng</h3><p>Asal: Tradisi Jawa.</p><a href="https://www.youtube.com/results?search_query=lagu+cublak+cublak+suweng" target="_blank" class="yt-btn">▶ Ayo Bernyanyi Bersama</a></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#6c5ce7;">Suwe Ora Jamu</div><div class="card-content"><h3>Suwe Ora Jamu</h3><p>Asal: Jawa.</p><a href="https://www.youtube.com/results?search_query=lagu+suwe+ora+jamu" target="_blank" class="yt-btn">▶ Ayo Bernyanyi Bersama</a></div></div>
+            </div>
+        </section>
+
+        <!-- 8. PERMAINAN TRADISIONAL -->
+        <section id="permainan" class="section">
+            <h2 style="font-family:'Fredoka'; color:var(--primary);">Permainan Tradisional (Maksimal 5)</h2>
+            <div class="card-grid">
+                <div class="item-card"><div class="card-header-banner" style="background:#fdcb6e; color:#333;">Congklak</div><div class="card-content"><h3>1. Congklak</h3><p>Alat: Papan kayu berlubang dan biji kerang/kuwuk.<br>Nilai Karakter: Kejujuran & kesabaran.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#00cec9;">Engklek</div><div class="card-content"><h3>2. Engklek</h3><p>Alat: Kotak petak digambar di tanah & gacuk batu.<br>Nilai Karakter: Sportivitas & ketangkasan.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e84393;">Gobak Sodor</div><div class="card-content"><h3>3. Gobak Sodor</h3><p>Alat: Lapangan garis petak.<br>Nilai Karakter: Kerja sama tim & strategi.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#6c5ce7;">Egrang</div><div class="card-content"><h3>4. Egrang</h3><p>Alat: Sepasang bambu panjang bertumpuan kaki.<br>Nilai Karakter: Keberanian & keseimbangan.</p></div></div>
+                <div class="item-card"><div class="card-header-banner" style="background:#e17055;">Rangku Alu</div><div class="card-content"><h3>5. Rangku Alu</h3><p>Asal: NTT. Alat: Bilah bambu panjang yang ditepuk-tepukan.<br>Nilai Karakter: Kelincahan & konsentrasi.</p></div></div>
+            </div>
+        </section>
+
+        <!-- 9. BHINNEKA TUNGGAL IKA -->
+        <section id="bhineka" class="section">
+            <div class="box-container">
+                <h2>Bhinneka Tunggal Ika & Pelestarian Budaya</h2>
+                <p><strong>Bhinneka Tunggal Ika</strong> memiliki arti <em>"Berbeda-beda tetapi tetap satu jua"</em>. Meskipun kita berasal dari suku, bahasa, dan adat yang berbeda, kita tetap bangsa Indonesia.</p>
+                <br>
+                <h3 style="color:var(--secondary);">Sikap Terpuji dalam Keberagaman:</h3>
+                <p>✅ Menghormati teman yang berbeda suku atau bahasa.</p>
+                <p>✅ Mau ikut bermain bersama tanpa membeda-bedakan asal daerah.</p>
+                <p>✅ Ikut melestarikan lagu daerah dan permainan tradisional.</p>
+                <br>
+                <h3 style="color:#e17055;">Sikap yang Harus Dihindari:</h3>
+                <p>❌ Mengejek bahasa daerah atau dialek teman.</p>
+                <p>❌ Menganggap suku sendiri lebih hebat dari suku lain.</p>
+            </div>
+        </section>
+
+        <!-- 10. KUIS INTERAKTIF -->
+        <section id="kuis" class="section">
+            <div class="quiz-container">
+                <h2 style="font-family:'Fredoka'; color:var(--primary); text-align:center;">Kuis Interaktif (10 Soal)</h2>
+                <p style="text-align:center; margin-bottom: 20px;">Jawablah pertanyaan di bawah ini dengan benar!</p>
+                <div id="quiz-box">
+                    <p id="quiz-question" class="question-box"></p>
+                    <div id="quiz-options" class="options-grid"></div>
+                </div>
+                <div id="quiz-result-area" style="text-align:center; display:none; margin-top:20px;">
+                    <h3 id="final-score-text" style="font-family:'Fredoka'; color:var(--primary);"></h3>
+                    <button class="main-btn" onclick="restartQuiz()" style="margin-top:15px;">Ulangi Kuis 🔄</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. HASIL BELAJAR DAN REFLEKSI -->
+        <section id="hasil" class="section">
+            <div class="box-container">
+                <h2>Hasil Belajar & Refleksi Siswa</h2>
+                <p><strong>Nama Siswa:</strong> <span id="res-name">-</span></p>
+                <p><strong>Skor Kuis Terakhir:</strong> <span id="res-score">0</span> / 100</p>
+                <br>
+                <h3 style="color:var(--primary);">Pertanyaan Refleksi:</h3>
+                <p>1. Budaya daerah apa yang paling menarik bagimu?</p>
+                <p>2. Mengapa kita harus menghargai keberagaman di Indonesia?</p>
+                <p>3. Bagaimana caramu ikut melestarikan budaya bangsa?</p>
+                <br>
+                <button class="main-btn" onclick="switchTab('dashboard')">Kembali ke Dashboard 🏠</button>
+            </div>
+        </section>
+
+        <!-- 12. TENTANG MEDIA -->
+        <section id="tentang" class="section">
+            <div class="box-container">
+                <h2>Tentang Media Pembelajaran</h2>
+                <p><strong>Judul:</strong> Jelajahi Nusantara: Keberagaman Suku dan Adat di Indonesia</p>
+                <p><strong>Mata Pelajaran:</strong> Pendidikan Pancasila (PKn)</p>
+                <p><strong>Kelas / Fase:</strong> III SD/MI / Fase B</p>
+                <br>
+                <p><strong>Capaian Pembelajaran (CP):</strong> Peserta didik mampu mengenali dan menghargai keberagaman budaya, suku bangsa, dan bahasa di lingkungan sekitar dalam bingkai Bhinneka Tunggal Ika.</p>
+                <br>
+                <p><strong>Tujuan Pembelajaran (TP):</strong> Mengidentifikasi keberagaman suku, pakaian adat, rumah adat, tarian, bahasa, lagu, dan permainan tradisional serta menunjukkan sikap menghargai.</p>
+                <br>
+                <p><em>Petunjuk Guru:</em> Media ini dapat diproyeksikan di kelas atau digunakan secara mandiri oleh siswa untuk eksplorasi visual dan latihan kuis interaktif.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Media Pembelajaran Interaktif | Pendidikan Pancasila Kelas 3 SD</p>
+    </footer>
+
+    <script>
+        // Logika Navigasi Tab
+        function switchTab(tabId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            
+            // Cari tombol navigasi yang sesuai
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        function startAdventure() {
+            const nameInput = document.getElementById('student-name').value.trim();
+            if(!nameInput) {
+                alert("Silakan masukkan nama lengkapmu terlebih dahulu ya!");
+                return;
+            }
+            localStorage.setItem('studentName', nameInput);
+            document.getElementById('res-name').innerText = nameInput;
+            document.getElementById('welcome-user').innerText = `Halo, ${nameInput}! Selamat datang di penjelajahan budaya.`;
+            switchTab('dashboard');
+        }
+
+        // Data 10 Soal Kuis Pilihan Ganda
+        const quizData = [
+            { q: "Semboyan negara Indonesia yang berarti berbeda-beda tetapi tetap satu jua adalah...", options: ["Tut Wuri Handayani", "Bhinneka Tunggal Ika", "Pancasila", "Garuda Pancasila"], answer: 1 },
+            { q: "Rumah adat Gadang dengan ciri khas atap melengkung menyerupai tanduk kerbau berasal dari...", options: ["Sumatra Barat", "Papua", "Jawa Tengah", "Bali"], answer: 0 },
+            { q: "Tarian kelompok dari Aceh yang terkenal dengan gerakan tepuk tangan cepat tanpa alat musik adalah...", options: ["Tari Kecak", "Tari Saman", "Tari Jaipong", "Tari Pendet"], answer: 1 },
+            { q: "Lagu daerah 'Ampar-Ampar Pisang' berasal dari provinsi...", options: ["Kalimantan Selatan", "Jawa Tengah", "Maluku", "Sumatra Utara"], answer: 0 },
+            { q: "Rumah adat tradisional khas dari Papua yang berbentuk bundar beratap jerami disebut...", options: ["Joglo", "Honai", "Bolon", "Baileo"], answer: 1 },
+            { q: "Pakaian tradisional wanita Minangkabau yang memiliki hiasan kepala menyerupai tanduk dinamakan...", options: ["Ulos", "Bundo Kanduang", "Baju Bodo", "Ulee Balang"], answer: 1 },
+            { q: "Bahasa persatuan yang kita gunakan untuk berkomunikasi antarsuku bangsa di Indonesia adalah...", options: ["Bahasa Daerah", "Bahasa Melayu Kuno", "Bahasa Indonesia", "Bahasa Inggris"], answer: 2 },
+            { q: "Permainan tradisional menggunakan sepasang bambu panjang untuk berjalan tinggi melatih keseimbangan dinamakan...", options: ["Congklak", "Engklek", "Egrang", "Gobak Sodor"], answer: 2 },
+            { q: "Sikap yang benar saat memiliki teman yang berbeda suku bangsa adalah...", options: ["Mengejek bahasanya", "Menghormati dan berteman baik", "Menjauhinya", "Memaksa ikut budayanya"], answer: 1 },
+            { q: "Alat musik atau papan permainan tradisional congklak dimainkan dengan menggunakan...", options: ["Biji kerang / kuwuk", "Batu besar", "Kelereng besi", "Bola tenis"], answer: 0 }
+        ];
+
+        let currentQuizIdx = 0;
+        let score = 0;
+
+        function loadQuiz() {
+            if(currentQuizIdx >= quizData.length) {
+                document.getElementById('quiz-box').style.display = 'none';
+                document.getElementById('quiz-result-area').style.display = 'block';
+                let finalScore = score * 10;
+                document.getElementById('final-score-text').innerText = `🎉 Kuis Selesai! Skor Kamu: ${finalScore} / 100`;
+                document.getElementById('res-score').innerText = finalScore;
+                localStorage.setItem('quizScore', finalScore);
+                return;
+            }
+
+            document.getElementById('quiz-box').style.display = 'block';
+            document.getElementById('quiz-result-area').style.display = 'none';
+
+            let current = quizData[currentQuizIdx];
+            document.getElementById('quiz-question').innerText = `Soal ${currentQuizIdx + 1} dari 10:\n${current.q}`;
+            
+            let optHTML = "";
+            current.options.forEach((opt, idx) => {
+                optHTML += `<button class="option-btn" onclick="checkAnswer(${idx})">${String.fromCharCode(65 + idx)}. ${opt}</button>`;
+            });
+            document.getElementById('quiz-options').innerHTML = optHTML;
+        }
+
+        function checkAnswer(selectedIdx) {
+            let current = quizData[currentQuizIdx];
+            if(selectedIdx === current.answer) {
+                score++;
+                alert("Hebat! Jawabanmu Benar! 🌟");
+            } else {
+                alert("Kurang tepat. Tetap semangat mencoba soal berikutnya!");
+            }
+            currentQuizIdx++;
+            loadQuiz();
+        }
+
+        function restartQuiz() {
+            currentQuizIdx = 0;
+            score = 0;
+            loadQuiz();
+        }
+
+        window.onload = function() {
+            let savedName = localStorage.getItem('studentName');
+            if(savedName) {
+                document.getElementById('student-name').value = savedName;
+                document.getElementById('res-name').innerText = savedName;
+                document.getElementById('welcome-user').innerText = `Halo, ${savedName}! Selamat datang kembali di penjelajahan budaya.`;
+            }
+            let savedScore = localStorage.getItem('quizScore');
+            if(savedScore) {
+                document.getElementById('res-score').innerText = savedScore;
+            }
+            loadQuiz();
+        };
+    </script>
+</body>
+</html>
